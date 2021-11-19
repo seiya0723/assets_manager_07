@@ -1,0 +1,330 @@
+body{
+  background-image: url('ookamikun1.png');
+}
+
+html,body{
+    overflow-x: hidden;
+    margin:0;
+}
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.left_header {
+    width:100%;
+    height:3rem;
+    position:fixed;
+    z-index:99;
+
+    background:#131417;
+    color:white;
+    display:flex;
+    align-items:center;
+
+    overflow:hidden;
+}
+.header_link {
+    color:white;
+    margin-left:0.5rem;
+}
+.left_header h1 {
+    font-size:2rem;
+    font-weight:bold;
+    line-height:normal;
+    margin:0;
+}
+
+.l_sidebar_button {
+    display:none;
+}
+.l_sidebar_label {
+    position:relative;
+    margin-left:0.5rem;
+    margin-bottom:0;
+
+    width:3rem;
+    height:2rem;
+
+    z-index:100;
+    cursor:pointer;
+    transition:0.2s;
+}
+.l_sidebar_label i {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:1.75rem;
+    color:white;
+}
+.l_sidebar_label i.fa-times { display:none; }
+.l_sidebar_label i.fa-bars { display:block; }
+input[type="checkbox"]#l_sidebar:checked ~ .left_header .l_sidebar_label i.fa-bars { display:none; }
+input[type="checkbox"]#l_sidebar:checked ~ .left_header .l_sidebar_label i.fa-times { display:block; }
+
+.header_right_content {
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+
+    display:flex;
+    margin-right:0.5rem;
+}
+
+
+.l_sidebar_menu {
+    position:fixed;
+    top:3rem;
+    left:-300px;
+
+    height:calc( 100vh - 3rem);
+    width:300px;
+    background:#333;
+    color:white;
+
+    transition:0.2s;
+    overflow:auto;
+    z-index:99;
+}
+input[type="checkbox"]#l_sidebar:checked ~ .l_sidebar_menu{
+    left:0;
+    transition:0.2s;
+}
+.l_sidebar_closer {
+    position:fixed;
+    top:3rem;
+    right:0;
+
+    height:calc(100vh - 3rem);
+    width:100%;
+    background:white;
+    opacity:0.6;
+    cursor:pointer;
+    z-index:98;
+
+    display:none;
+}
+input[type="checkbox"]#l_sidebar:checked ~ .l_sidebar_closer{
+    display:block;
+}
+main {
+   margin-top:3rem;
+}
+
+/* sp mode */
+@media (max-width:768px){
+    .left_header h1 {
+        font-size:1.5rem;
+        font-weight:bold;
+        line-height:normal;
+        margin:0;
+    }
+
+}
+
+/* tab system */
+
+.tab_radio {
+    display:none;
+}
+.tab_area {
+    display:none;
+    border:solid 0.2rem white;
+    padding:0.5rem;
+}
+.tab_label {
+    border-top:solid 0.2rem white;
+    border-left:solid 0.2rem white;
+    border-right:solid 0.2rem white;
+
+    padding:0.25rem 1rem;
+    background:silver;
+    cursor:pointer;
+}
+
+input[type="radio"].tab_radio:checked + .tab_label { background:white; }
+
+input[type="radio"]#tab_radio_0:checked ~ #tab_area_0 { display:block; }
+input[type="radio"]#tab_radio_1:checked ~ #tab_area_1 { display:block; }
+input[type="radio"]#tab_radio_2:checked ~ #tab_area_2 { display:block; }
+input[type="radio"]#tab_radio_3:checked ~ #tab_area_3 { display:block; }
+input[type="radio"]#tab_radio_4:checked ~ #tab_area_4 { display:block; }
+input[type="radio"]#tab_radio_5:checked ~ #tab_area_5 { display:block; }
+input[type="radio"]#tab_radio_6:checked ~ #tab_area_6 { display:block; }
+input[type="radio"]#tab_radio_7:checked ~ #tab_area_7 { display:block; }
+input[type="radio"]#tab_radio_8:checked ~ #tab_area_8 { display:block; }
+input[type="radio"]#tab_radio_9:checked ~ #tab_area_9 { display:block; }
+input[type="radio"]#tab_radio_10:checked ~ #tab_area_10 { display:block; }
+input[type="radio"]#tab_radio_11:checked ~ #tab_area_11 { display:block; }
+input[type="radio"]#tab_radio_12:checked ~ #tab_area_12 { display:block; }
+
+
+/* chart dialog and button */
+
+.chart_button{
+    display:inline-block;
+
+    border:solid 0.25rem white;
+    border-radius:0.25rem;
+
+    margin:0.25rem;
+    cursor:pointer;
+
+    text-align:center;
+    padding:0.5rem;
+    font-size:2rem;
+    transition:0.2s;
+
+}
+.chart_button:hover {
+    background:white;
+    transition:0.2s;
+}
+
+
+/* modal dialog */
+/* from https://github.com/seiya0723/modal-jquery */
+
+#modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+#modal_content{
+    position:relative;
+    top: calc(50% + 1.5rem);
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:90vw;
+    height:90vh;
+    background:white;
+    padding:1rem;
+}
+
+
+
+/* graph css */
+
+.single_graph {
+    display:none;
+    position:relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    /* height:100%をセットしてはみ出しを防ぐ */
+    height:100%;
+}
+.double_graph {
+    display:none;
+    position:relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    height:100%;
+}
+.double_graph_flex{
+    display:flex;
+    width:100%;
+
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.double_graph_content {
+    width:50%;
+}
+
+
+
+
+/* form css */
+
+
+/* select square */
+
+.select_square {
+    display:inline-block;
+    position:relative;
+}
+.select_square select {
+    font-size:1.2rem;
+    font-family:monospace;
+    margin:0.25rem 0;
+    padding:0.25rem 2rem 0.25rem 0.5rem;
+    border:solid 0.2rem deepskyblue;
+    background:white;
+    cursor:pointer;
+}
+.select_square select:focus {
+    outline:none;
+}
+.select_square::before {
+    content:"";
+    position:absolute;
+    top:50%;
+    right:0.5rem;
+    transform:translate(0%,-50%);
+
+    width:0;
+    height:0;
+	border-left: 0.5rem solid transparent;
+	border-right: 0.5rem solid transparent;
+	border-top: 0.5rem solid deepskyblue;
+
+    pointer-events: none;
+}
+.select_square select:-ms-expand {
+	display: none;
+}
+.select_square select {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+    appearance: none;
+
+}
+
+/* text-square */
+
+.text_square{
+    width:12rem;
+    font-family:monospace;
+    font-size:1.2rem;
+    padding:0.25rem 0;
+    margin: 0.25rem 0;
+    border:solid 0.2rem deepskyblue;
+    background:white;
+    transition:0.2s;
+}
+.text_square:focus {
+    transition:0.2s;
+    outline:none;
+}
+
+
+/* button_squarea */
+
+.button_square {
+    font-size:1.2rem;
+    font-family:monospace;
+    padding:0.25rem 2rem;
+    margin: 0.25rem 0;
+    border:solid 0.2rem deepskyblue;
+    border-radius:0.25rem;
+    transition:0.2s;
+}
+.button_square:hover {
+    background:deepskyblue;
+    transition:0.2s;
+}

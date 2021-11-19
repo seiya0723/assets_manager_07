@@ -1,0 +1,41 @@
+{% load humanize %}
+
+<div class="pie_chart chart_button"><i class="fas fa-chart-pie"></i></div>
+<div class="bar_chart chart_button"><i class="fas fa-chart-bar"></i></div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <td class="text-center">鑑定項目</td>
+            <td class="text-center">主な用途</td>
+            <td class="text-center">収入金額</td>
+            <td class="text-center">支出金額</td>
+            <td class="text-center">小計</td>
+            <td class="text-center">決算日</td>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for balance in balances %}
+    <tr>
+        <td class="balance_category">{{ balance.category|default:"未分類" }}</td>
+        <td class="balance_comment ">{{ balance.comment }}</td>
+        <td class="balance_income  ">{{ balance.income|default:"0"|intcomma }}</td>
+        <td class="balance_spending">{{ balance.spending|default:"0"|intcomma }}</td>
+        <td class="balance_total   ">{{ balance.total|default:"0"|intcomma }}</td>
+        <td class="balance_pay_dt  ">{{ balance.pay_dt|date:"Y年m月d日" }}</td>
+        <td>
+            <form id="{{ balance.id }}_delete" action="{% url 'asset:delete' balance.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-outline-dark delete" type="button" value="{{ balance.id }}">削除</button>
+                <!--
+                    TODO:inputタグでは間に合わないのでbuttonタグに変える↑
+                <input class="btn btn-outline-dark" type="submit" value="削除">
+                -->
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
